@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='selfhelp.css') }}">
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-custom" style="background-color: #1E3F66;">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar1">
+            <ul class="navbar-nav nav-fill w-100">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="#">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">What is Anxiety</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Anxiety Tracker</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Journal</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="bodycontent">
+	<h1 class="headingtd">Todo list</h1>
+	<div class="todotext">
+	<p><p>
+	</div>
+	<div class="todoabout s-header  container">
+		<p>
+<p>This is our todo list feature, use this feature to set yourself small tasks each day and as you complete those tasks hit the task complete button and enjoy your little burst of dopamine.<p>
+	</div>
+	<div class="container">Add a new item:
+		<form action="/add" method="POST">
+		<input type="text" name="todoitem" >
+		<input type="submit"></div>
+		</form>
+	<div>
+		<div class="container-fluid">
+	<h2 class="s-header">Incomplete Items</h2>
+	<ul style="list-style-type:none;" class="list-group-item list-group-item-danger">
+		{% for todo in incomplete %}
+		<li style="font-size: 30pt;">{{ todo.text }} <a href="{{ url_for('complete', id=todo.id)}}">Task complete</a></li>
+		{% endfor %}
+	</ul>
+	<h2 class="s-header">Completed items</h2>
+	<ul style="list-style-type:none;"  class="list-group-item list-group-item-primary">
+		{% for todo in complete %}
+		<li style="font-size: 30pt">{{ todo.text }}</li>
+		{% endfor %}
+		
+		{% for todo in delete %}
+		<a href="{{ url_for('delete', id=todo.id)}}">Delete Item</a>
+		{% endfor %}
+</ul>
+</div>
+</div>
+</div>
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/">Jamie Kearney 40442397@live.napier.ac.uk</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</body>
+</html>
